@@ -9,8 +9,8 @@
 ## later iterations.  The program returns a tab text file that can be viewed in excel, etc.
 
 ## Examples of the command line entry:
-## python PhylaFromTaxFile.py test.taxonomy test.shared 2 uneven=y taxa=True y output.txt
-## python PhylaFromTaxFile.py test.taxonomy test.shared 6 uneven=y taxa=False n output.txt
+## python TaxaAnalysis.py test.taxonomy test.shared 2 uneven=y taxa=True y output.txt
+## python TaxaAnalysis.py test.taxonomy test.shared 6 uneven=y taxa=False n output.txt
 
 ## For this program the tax levels are as follows:
 ## 1 = Domain
