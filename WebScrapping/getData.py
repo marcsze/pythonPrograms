@@ -31,6 +31,7 @@ def main():
 	LinkStorage = getInput("combined.txt")
 	storedData = {}
 	linkedData = {}
+	companyData = {}
 	for i in LinkStorage:
 		
 		PosNameSearch = re.search('http://www.biospace.com/jobs/job-listing/(.*)-[0-9]', i)
@@ -38,13 +39,16 @@ def main():
 		html = requests.get(i).text
 		soup = BeautifulSoup(html, 'html5lib')
 		description = soup.find("div").findAll("span", attrs={'id':'ctl00_phMainContent_lblJobRequirements'})
+		company = soup.find("div").findAll("span", attrs={'id':'ctl00_phMainContent_lblJobDescription'})
 		storedData[position] = description
 		linkedData[position] = i
+		companyData[position] = company
 		print(i)
 		time.sleep(1)
 		
 	createOutput(storedData, "output2.txt")
 	createOutput(linkedData, "linkedData1.txt")
+	createOutput(companyData, "companyData.txt")
 	
 
 if __name__ == '__main__': main()
