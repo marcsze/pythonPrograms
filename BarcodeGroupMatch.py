@@ -5,7 +5,7 @@
 # It will create a group file and if the barcode is not found then it will assign a group name of "none"
 # to the sequence.
 # Proper usage is as follows:
-	# python BarcodeGroupMatch.py <sequenceAndBarcodeFile> <oligoFile> <outputfilename>
+	# python BarcodeGroupMatch.py <sequenceAndBarcodeFile> <oligoFile> <outputfilename> <"Full" or "Partial">
 
 
 # Load the needed modules for the program
@@ -18,8 +18,9 @@ def commandLine():
 	inputfile = commands[1]
 	oligofile = commands[2]
 	outputfile = commands[3]
+	selection = commands[4]
 	
-	return inputfile, oligofile, outputfile
+	return inputfile, oligofile, outputfile, selection
 
 # Reads in the data and creates a dictionary
 def createDataArray(inputfile, n):
@@ -58,18 +59,25 @@ def matchData(SeqBarDict, BarGroupDict):
 	return matchedDict
 
 #Print out group file 
-def makeGroupfile(matchedDict, outputfile):
+def makeGroupfile(matchedDict, outputfile, selection):
 	outfile = open(outputfile, 'w')
-	for i in matchedDict:
-		group = matchedDict[i]
-		print("{0}\t{1}".format(i, group), end ='\n', file = outfile)
+	if selection == "Full":
+		for i in matchedDict:
+			group = matchedDict[i]
+			print("{0}\t{1}".format(i, group), end ='\n', file = outfile)
+	else:
+		for i in matchedDict:
+			group = matchedDict[i]
+			if group != "none":
+				print("{0}\t{1}".format(i, group), end ='\n', file = outfile)
 	
 	outfile.close()
-	
+
+
 # Run the Program
 def main():
 
-	inputfile, oligofile, outputfile = commandLine()
+	inputfile, oligofile, outputfile, selection = commandLine()
 	SeqBarDict = createDataArray(inputfile, "name")
 	BarGroupDict = createDataArray(oligofile, "oligo")
 	matchedDict = matchData(SeqBarDict, BarGroupDict)
