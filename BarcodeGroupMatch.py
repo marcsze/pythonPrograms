@@ -81,6 +81,6 @@ def main():
 	SeqBarDict = createDataArray(inputfile, "name")
 	BarGroupDict = createDataArray(oligofile, "oligo")
 	matchedDict = matchData(SeqBarDict, BarGroupDict)
-	makeGroupfile(matchedDict, outputfile)
+	makeGroupfile(matchedDict, outputfile, selection)
 
 if __name__ == '__main__': main()
