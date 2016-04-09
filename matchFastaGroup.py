@@ -64,6 +64,7 @@ def makeDataArray(inputfile, type):
 # Create a fasta file with only the groups not labelled with "none"
 def makeNewFasta(fastaDict, mapDict, groupDict, outputfile):
 	outfile = open(outputfile, 'w')
+	print("Adding Sequences to fasta......")
 	for i in fastaDict:
 		sequence = fastaDict[i]
 		seqName = mapDict[i]
@@ -71,7 +72,6 @@ def makeNewFasta(fastaDict, mapDict, groupDict, outputfile):
 				
 		# If the group does not equal none then keep it and output it to a new file
 		if group != "none":
-			print("Adding Sequence to fasta: ", i)
 			print(">{0}_{1}\n{2}".format(i, group, sequence), end ='\n', file = outfile)
 		
 	outfile.close()	
@@ -80,7 +80,7 @@ def makeNewFasta(fastaDict, mapDict, groupDict, outputfile):
 def makeNewGroups(fastaDict, mapDict, groupDict, outputfile):
 	NewOuputfile = re.sub('.fasta', '.groups', outputfile)
 	outfile = open(NewOuputfile, 'w')
-	
+	print("Creating new group file.......")
 	for i in fastaDict:
 		sequence = fastaDict[i]
 		seqName = mapDict[i]
@@ -88,7 +88,6 @@ def makeNewGroups(fastaDict, mapDict, groupDict, outputfile):
 				
 		# If the group does not equal none then keep it and output it to a new file
 		if group != "none":
-			print("Adding Sequence to Group: ", i)
 			print("{0}_{1}\t{2}".format(i, group, group), end ='\n', file = outfile)
 	
 	outfile.close()
@@ -101,6 +100,7 @@ def main():
 	mapDict = makeDataArray(mapfile, "map")
 	makeNewFasta(fastaDict, mapDict, groupDict, outputfile)
 	makeNewGroups(fastaDict, mapDict, groupDict, outputfile)
+	print("Complete")
 	
 
 if __name__ == '__main__': main()
