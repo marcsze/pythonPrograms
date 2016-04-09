@@ -25,7 +25,7 @@ def commandLine():
 # Reads in the data and creates a dictionary
 def createDataArray(inputfile, n):
 	inputfile = open(inputfile, 'r')
-	
+	print("Reading in Data.....")
 	SeqBarDict = {}
 	if n == 'name':
 		for line in inputfile:
@@ -46,21 +46,21 @@ def createDataArray(inputfile, n):
 # Create function to find matches and if it does not match add a none to it
 def matchData(SeqBarDict, BarGroupDict):
 	matchedDict = {}
-	x = 1
+	print("Matching Sequence to Barcode.....")
 	for i in SeqBarDict:
-		print("sequence", x)
 		try:
 			bartoMatch = SeqBarDict[i]
 			foundGroup = BarGroupDict[bartoMatch]
 			matchedDict[i] = foundGroup
 		except KeyError:
 			matchedDict[i] = 'none'
-		x = x + 1	
+	
 	return matchedDict
 
 #Print out group file 
 def makeGroupfile(matchedDict, outputfile, selection):
 	outfile = open(outputfile, 'w')
+	print("Making Group file......")
 	if selection == "Full":
 		for i in matchedDict:
 			group = matchedDict[i]
