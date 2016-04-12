@@ -96,7 +96,7 @@ def makeNewGroups(fastaDict, mapDict, groupDict, outputfile):
 def main():
 	fastafile, mapfile, groupfile, outputfile = commandLine()
 	fastaDict = makeDataArray(fastafile, "fasta")
-	groupDict = makeDataArray(groupfile, "groups")
+	groupDict = makeDataArray(groupfile, "group")
 	mapDict = makeDataArray(mapfile, "map")
 	makeNewFasta(fastaDict, mapDict, groupDict, outputfile)
 	makeNewGroups(fastaDict, mapDict, groupDict, outputfile)
