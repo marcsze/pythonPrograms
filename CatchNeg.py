@@ -89,6 +89,12 @@ def getTotalKmers(fastaDict, length):
 		kmerNumDict[i] = len(output)
 	return kmerNumDict
 
+# Look at what Kmers are highly represented across sequences	
+# Store the Kmers 
+# Store the number of times each kmer comes up
+	# Probably looking for something that shows up in all sequences
+	
+	
 # Run the main program
 def main():
 	fastafile, length = commandLine()
